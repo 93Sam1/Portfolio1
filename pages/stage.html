@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage La Poste — Samuel ROCHEMONT</title>
+<link rel="stylesheet" href="../styles/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+<button class="burger-btn" id="burger" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-logo"><span class="name">Samuel Rochemont</span><span class="role">BUT Science des Données · VCOD</span></div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Navigation</div>
+    <a href="../index.html" class="nav-link"><span class="nav-icon">⬡</span> Accueil</a>
+    <a href="about.html" class="nav-link"><span class="nav-icon">◎</span> Parcours</a>
+    <a href="competences.html" class="nav-link"><span class="nav-icon">◈</span> Compétences</a>
+    <a href="projets.html" class="nav-link"><span class="nav-icon">◫</span> Projets</a>
+    <a href="stage.html" class="nav-link active"><span class="nav-icon">◉</span> Stage <span class="nav-dot"></span></a>
+    <div class="nav-section-label" style="margin-top:0.5rem;">Contact</div>
+    <a href="contact.html" class="nav-link"><span class="nav-icon">◌</span> Me contacter</a>
+  </nav>
+  <div class="sidebar-footer"><a href="https://www.linkedin.com/in/samuel-rochemont/" target="_blank">↗ LinkedIn</a></div>
+</aside>
+
+<main class="main">
+<div class="page-wrap">
+  <div class="page-header">
+    <div class="breadcrumb">portfolio / <span>stage</span></div>
+    <h1>Stage — La Poste</h1>
+    <p>Technicien Data · Branche Services Courrier Colis · 3 sites en Seine-Saint-Denis · Avr–Juin 2026</p>
+  </div>
+
+  <div class="stage-split">
+    <div>
+
+      <!-- Banner -->
+      <div class="stage-banner">
+        <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--teal);margin-bottom:0.5rem;">// stage.BUT_SD.S4.2026</div>
+        <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:800;margin-bottom:0.3rem;">La Poste</h2>
+        <p style="color:var(--text-2);font-size:0.9rem;">Branche Services Courrier Colis · Fiabilisation des données opérationnelles</p>
+        <p style="color:var(--text-3);font-size:0.82rem;margin-top:0.3rem;font-family:var(--font-mono);">Avril → Juin 2026 · 8 semaines · 3 sites</p>
+      </div>
+
+      <!-- Carte -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1rem;">
+        <div style="padding:0.8rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+          <h3 style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);">Mes 3 sites de stage</h3>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;color:var(--teal);">Seine-Saint-Denis (93)</span>
+        </div>
+        <div id="stage-map" style="height:280px;"></div>
+        <div style="padding:0.8rem 1rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;">
+          <div style="background:var(--bg3);border-radius:6px;padding:0.6rem;font-size:0.72rem;">
+            <div style="color:var(--teal);font-weight:700;margin-bottom:0.2rem;">📍 Montreuil</div>
+            <div style="color:var(--text-3);">6 Rue Ariste Hémard<br>93100 Montreuil</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:6px;padding:0.6rem;font-size:0.72rem;">
+            <div style="color:var(--amber);font-weight:700;margin-bottom:0.2rem;">📍 Neuilly-Plaisance</div>
+            <div style="color:var(--text-3);">6 Rue Marcel Dassault<br>93360 Neuilly-Plaisance</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:6px;padding:0.6rem;font-size:0.72rem;">
+            <div style="color:var(--blue);font-weight:700;margin-bottom:0.2rem;">📍 Rosny-sous-Bois</div>
+            <div style="color:var(--text-3);">33bis Rue Estienne d'Orves<br>93110 Rosny-sous-Bois</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Systèmes d'information -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem;margin-bottom:1rem;">
+        <h3 style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Systèmes d'Information (SI) utilisés</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;">
+          <div style="background:var(--bg3);border-radius:8px;padding:0.8rem;">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--teal);font-weight:700;margin-bottom:0.3rem;">GeoPaD</div>
+            <p style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Application interne de cartographie des Points de Distribution (PDI) et Points de Remise (PRE). Outil de référence pour décrire, organiser et fiabiliser toutes les adresses desservies par La Poste et leurs particularités.</p>
+          </div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.8rem;">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--amber);font-weight:700;margin-bottom:0.3rem;">C2PO</div>
+            <p style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Référentiel clients de La Poste regroupant tous les clients avec des prestations particulières. Utilisé pour extraire des données de production et alimenter les dashboards Excel pour le suivi du trafic et la détection d'anomalies.</p>
+          </div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.8rem;">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--blue);font-weight:700;margin-bottom:0.3rem;">ORGATE</div>
+            <p style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">SI qui répertorie l'organisation des tournées des facteurs générées depuis Georoute. Utilisé pour exporter les données de tournées et alimenter d'autres systèmes d'information internes.</p>
+          </div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.8rem;">
+            <div style="font-family:var(--font-mono);font-size:0.72rem;color:var(--c4);font-weight:700;margin-bottom:0.3rem;">Google Maps / Earth</div>
+            <p style="font-size:0.78rem;color:var(--text-2);line-height:1.5;">Outils externes de cartographie pour vérifier visuellement la réalité du terrain quand GeoPaD ne suffit pas. Street View pour confirmer la présence et la localisation des boîtes aux lettres.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission 1 -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:var(--radius);padding:1.3rem;margin-bottom:1rem;">
+        <h3 style="font-size:0.82rem;font-weight:700;color:var(--teal);margin-bottom:0.8rem;">Mission 1 — Contrôle géographique & correction d'anomalies</h3>
+        <div style="display:flex;flex-direction:column;gap:0.7rem;">
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Vérification des BAL > 100m :</strong> identification via GeoPaD des boîtes aux lettres situées à plus de 100 mètres de la chaussée, puis vérification visuelle sur Google Earth pour confirmer ou corriger la distance réelle déclarée par le facteur.
+          </div>
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Détection d'incohérences PDI/BAL :</strong> vérification de la cohérence entre le point d'arrêt du facteur et le nombre de boîtes aux lettres associées — un PDI devant un immeuble qui ne correspond pas au nombre de BAL déclarées, un PDI regroupant plusieurs PRE mal localisés, des BAL non visibles dans GeoPaD.
+          </div>
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Accès privés complexes :</strong> analyse de terrain via Google Earth pour les chemins privés, allées, portails ou résidences fermées dont l'accès est mal référencé dans le SI. Quand Street View n'est pas disponible : contact direct avec les facteurs, qui sont les mieux placés pour confirmer la réalité terrain.
+          </div>
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Mise à jour des SI :</strong> correction des données dans GeoPaD, ORGATE ou C2PO selon les cas, pour améliorer la qualité de distribution, éviter les erreurs d'adressage et optimiser les tournées.
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission 2 -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:var(--radius);padding:1.3rem;margin-bottom:1rem;">
+        <h3 style="font-size:0.82rem;font-weight:700;color:var(--amber);margin-bottom:0.8rem;">Mission 2 — Analyse de données & Reporting Excel</h3>
+        <div style="display:flex;flex-direction:column;gap:0.7rem;">
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Fiches d'identité site :</strong> pour chaque site, import de 3 fichiers (ORGATE → CSV, GeoPaD → CSV, C2PO → CSV) dans un classeur Excel préparé avec macros. Les graphiques, tableaux et pourcentages de fiabilisation se génèrent automatiquement. Permet d'identifier les anomalies à corriger.
+          </div>
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Dashboards de suivi du trafic :</strong> création de tableaux de bord comparatifs 2025 vs 2026 pour analyser les baisses de trafic et aider à la réorganisation des tournées.
+          </div>
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Plans de production quadri-mensuels :</strong> dashboards avec 4 tableaux (un par mois), présentant chaque jour du quadrimestre avec son taux de trafic courrier prévu. La mise en forme conditionnelle colore automatiquement chaque pourcentage selon 3 zones : <span style="color:#22c55e;font-weight:600;">vert (0–85%)</span>, <span style="color:#60a5fa;font-weight:600;">bleu (86–109% — zone idéale)</span>, <span style="color:#ef4444;font-weight:600;">rouge (110–300%)</span>. Le but est d'être dans le bleu. En dessous des tableaux, un graphique histogramme groupé "Prévision Trafic Q? 2026" avec deux séries : le <strong style="color:var(--text);">TMO 100</strong> (Trafic Moyen Opérationnel de référence, ligne continue à 100%) et le <strong style="color:var(--text);">%TMO</strong> (pourcentage moyen hebdomadaire calculé via =MOYENNE() sur la plage de la semaine). Ce graphique permet de visualiser en un coup d'œil l'évolution du trafic semaine par semaine et de repérer les périodes au-dessus ou en dessous de la base 100. Les bornes de couleur sont paramétrables depuis une feuille dédiée du classeur.
+          </div>
+          <div style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">
+            <strong style="color:var(--text);">Bulletins d'itinéraires (BI) :</strong> reporting de l'organisation des tournées des facteurs (nom de rue, numéro, précisions) selon une mise en forme précise, dans l'ordre de la tournée.
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission 3 VBA -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--c4);border-radius:var(--radius);padding:1.3rem;margin-bottom:1rem;">
+        <h3 style="font-size:0.82rem;font-weight:700;color:var(--c4);margin-bottom:0.8rem;">Mission 3 — Automatisation VBA : de 1 journée à 1 heure</h3>
+
+        <p style="font-size:0.83rem;color:var(--text-2);line-height:1.7;margin-bottom:0.7rem;">Une partie de mon travail de reporting consistait à générer un classeur Excel spécifique via un SI interne : ce SI crée automatiquement le classeur à partir de fichiers que j'importais au préalable. Le classeur généré contient une <strong style="color:var(--text);">vingtaine de feuilles</strong>, et chacune nécessitait ensuite une mise en forme précise et manuelle : couleurs de cellules, bordures, masquage de colonnes et de lignes, ajustements de visibilité. Ce travail répétitif feuille par feuille prenait <strong style="color:var(--text);">environ une journée entière</strong> à chaque fois.</p>
+
+        <p style="font-size:0.83rem;color:var(--text-2);line-height:1.7;margin-bottom:0.7rem;">En cherchant comment optimiser ce processus, j'ai développé une <strong style="color:var(--text);">macro VBA</strong> qui automatise quasiment l'intégralité de la mise en forme sur l'ensemble des feuilles simultanément. La macro applique en quelques secondes toutes les règles de formatage sans intervention manuelle. Résultat : on passe d'<strong style="color:var(--c1);">une journée entière</strong> à <strong style="color:var(--c4);">environ 1 heure</strong> pour traiter un classeur complet — ce qui représente un vrai gain de temps opérationnel pour l'équipe.</p>
+
+        <div style="display:flex;gap:0.7rem;margin-bottom:0.8rem;">
+          <div style="background:var(--bg3);border-radius:8px;padding:0.8rem 1rem;flex:1;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--c1);">~1 jour</div>
+            <div style="font-size:0.7rem;color:var(--text-3);">Sans automatisation</div>
+          </div>
+          <div style="display:flex;align-items:center;color:var(--text-3);font-size:1.4rem;">→</div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.8rem 1rem;flex:1;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--c4);">~1 heure</div>
+            <div style="font-size:0.7rem;color:var(--text-3);">Avec la macro VBA</div>
+          </div>
+        </div>
+
+        <div style="background:var(--bg3);border-radius:8px;padding:0.8rem 1rem;font-size:0.79rem;color:var(--text-2);line-height:1.6;border-left:2px solid var(--c4);">
+          <strong style="color:var(--text);">Ce que fait la macro :</strong> parcourir chaque feuille du classeur, appliquer les couleurs de fond et de police selon les règles définies, poser les bordures, masquer les colonnes et lignes inutiles pour la lecture, ajuster les largeurs de colonnes. Tout ce qui prenait des dizaines de clics répétés par feuille est exécuté en une seule pression de bouton.
+        </div>
+
+        <div style="margin-top:0.8rem;padding:0.7rem 1rem;background:rgba(45,212,191,0.05);border:1px solid rgba(45,212,191,0.2);border-radius:8px;font-size:0.78rem;color:var(--text-3);font-style:italic;">
+          📷 Les captures d'écran de ce classeur et de la macro seront disponibles prochainement, après anonymisation du contenu confidentiel de La Poste.
+        </div>
+      </div>
+
+      <!-- Montée en autonomie -->
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem;margin-bottom:1rem;">
+        <h3 style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Progression & Autonomie</h3>
+        <p style="font-size:0.83rem;color:var(--text-2);line-height:1.7;">Les premiers jours étaient centrés sur l'observation et la formation aux applications internes. Ma tutrice me formait aux SI, je reproduisais et comprenais progressivement. Petit à petit, j'ai gagné en autonomie jusqu'à être capable d'exécuter certaines tâches sans aucune question — ma tutrice n'avait plus qu'à m'indiquer le travail à faire.</p>
+      </div>
+
+    </div><!-- end left col -->
+
+    <!-- Sidebar -->
+    <div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:0.8rem;">
+        <h4 style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Entreprise</h4>
+        <p style="font-size:0.82rem;color:var(--text-2);line-height:1.6;">Groupe public français, leader dans la distribution de courrier et de colis. La Branche Services Courrier Colis gère l'acheminement et la distribution sur l'ensemble du territoire national.</p>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:0.8rem;">
+        <h4 style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Compétences BUT ciblées</h4>
+        <span class="comp-badge-large cb-1">🗄️ Traiter</span><br>
+        <span class="comp-badge-large cb-3" style="margin-top:0.4rem;">📈 Valoriser</span>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:0.8rem;">
+        <h4 style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Technologies utilisées</h4>
+        <div class="tags-cloud">
+          <span class="tag highlight">Excel / VBA</span>
+          <span class="tag highlight">GeoPaD</span>
+          <span class="tag">C2PO</span>
+          <span class="tag">ORGATE</span>
+          <span class="tag">Google Maps</span>
+          <span class="tag">Google Earth</span>
+          <span class="tag">Macro VBA</span>
+          <span class="tag">Dashboard</span>
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;">
+        <h4 style="font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);">Missions en chiffres</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+          <div style="background:var(--bg3);border-radius:8px;padding:0.7rem;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--teal);">3</div>
+            <div style="font-size:0.68rem;color:var(--text-3);">Sites couverts</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.7rem;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--amber);">3</div>
+            <div style="font-size:0.68rem;color:var(--text-3);">SI maîtrisés</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.7rem;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--c4);">×16</div>
+            <div style="font-size:0.68rem;color:var(--text-3);">Gain temps VBA</div>
+          </div>
+          <div style="background:var(--bg3);border-radius:8px;padding:0.7rem;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--blue);">8</div>
+            <div style="font-size:0.68rem;color:var(--text-3);">Semaines</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end stage-split -->
+
+</div>
+</main>
+</div>
+
+<div id="lb-modal" onclick="document.getElementById('lb-modal').classList.remove('open')">
+  <span class="lb-close">&#x2715;</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+function openLB(src){var m=document.getElementById('lb-modal');document.getElementById('lb-img').src=src;m.classList.add('open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lb-modal').classList.remove('open');});
+document.addEventListener('click',function(e){const s=document.querySelector('.sidebar'),b=document.getElementById('burger');if(s&&b&&!s.contains(e.target)&&!b.contains(e.target))s.classList.remove('open');});
+
+// Map
+const map = L.map('stage-map', {zoomControl: true, scrollWheelZoom: false}).setView([48.861, 2.487], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap', maxZoom: 19
+}).addTo(map);
+const mkTeal = L.divIcon({className:'',html:'<div style="width:14px;height:14px;border-radius:50%;background:#2dd4bf;border:2px solid #0d1117;box-shadow:0 0 8px #2dd4bf;"></div>',iconSize:[14,14],iconAnchor:[7,7]});
+const mkAmber = L.divIcon({className:'',html:'<div style="width:14px;height:14px;border-radius:50%;background:#fbbf24;border:2px solid #0d1117;box-shadow:0 0 8px #fbbf24;"></div>',iconSize:[14,14],iconAnchor:[7,7]});
+const mkBlue = L.divIcon({className:'',html:'<div style="width:14px;height:14px;border-radius:50%;background:#60a5fa;border:2px solid #0d1117;box-shadow:0 0 8px #60a5fa;"></div>',iconSize:[14,14],iconAnchor:[7,7]});
+L.marker([48.8603, 2.4428], {icon: mkTeal}).addTo(map).bindPopup('<b style="color:#2dd4bf">Montreuil</b><br>6 Rue Ariste Hémard<br>93100 Montreuil');
+L.marker([48.8566, 2.5098], {icon: mkAmber}).addTo(map).bindPopup('<b style="color:#fbbf24">Neuilly-Plaisance</b><br>6 Rue Marcel Dassault<br>93360 Neuilly-Plaisance');
+L.marker([48.8715, 2.4873], {icon: mkBlue}).addTo(map).bindPopup("<b style='color:#60a5fa'>Rosny-sous-Bois</b><br>33bis Rue Estienne d'Orves<br>93110 Rosny-sous-Bois");
+</script>
+</body>
+</html>
