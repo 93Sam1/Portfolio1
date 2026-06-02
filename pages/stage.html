@@ -279,6 +279,126 @@
             </div>
             <p style="font-size:0.76rem;color:var(--text-3);margin-top:0.5rem;line-height:1.6;">On peut chercher un client par son nom et sa commune, ou directement par identifiant. Le résultat s'affiche en bleu en bas de page avec l'adresse. La fiche détail permet de consulter et modifier toutes les informations. L'export communal génère un CSV complet de tous les clients d'une commune, utilisable dans d'autres SI ou classeurs Excel.</p>
           </div>
+
+          <!-- Code VBA complet -->
+          <div style="margin-top:1.4rem;">
+            <button onclick="toggleVBACode(this)" style="display:flex;align-items:center;gap:0.5rem;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);color:var(--c4);font-size:0.78rem;font-weight:700;padding:0.5rem 1rem;border-radius:8px;cursor:pointer;width:100%;font-family:var(--font-mono);">
+              <span class="vba-arrow" style="display:inline-block;transition:transform .25s;">▶</span>
+              <span class="vba-btn-txt">Voir le code VBA complet</span>
+            </button>
+            <div class="vba-code-block" style="display:none;margin-top:0.6rem;background:#0d1117;border:1px solid rgba(74,222,128,0.2);border-radius:8px;overflow:hidden;">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:0.5rem 0.9rem;background:rgba(74,222,128,0.06);border-bottom:1px solid rgba(74,222,128,0.15);">
+                <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--c4);">FormatDistribution.bas</span>
+                <button onclick="copyVBACode(this)" style="font-size:0.68rem;color:var(--text-3);background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:0.2rem 0.6rem;cursor:pointer;">📋 Copier</button>
+              </div>
+              <pre id="vba-code-content" style="margin:0;padding:1rem;font-family:var(--font-mono);font-size:0.72rem;line-height:1.7;color:#e2e8f0;overflow-x:auto;white-space:pre;"><code><span style="color:#7ee787;">Sub</span> <span style="color:#79c0ff;">FormatDistribution</span>()
+
+     Application.DisplayAlerts = <span style="color:#79c0ff;">False</span>
+
+    <span style="color:#7ee787;">Dim</span> ws <span style="color:#7ee787;">As</span> Worksheet
+    <span style="color:#7ee787;">Dim</span> lastRow <span style="color:#7ee787;">As Long</span>
+    <span style="color:#7ee787;">Dim</span> i <span style="color:#7ee787;">As Long</span>
+    <span style="color:#7ee787;">Dim</span> colJour <span style="color:#7ee787;">As Long</span>
+    <span style="color:#7ee787;">Dim</span> jourVal <span style="color:#7ee787;">As String</span>
+    <span style="color:#7ee787;">Dim</span> couleur <span style="color:#7ee787;">As Long</span>
+    <span style="color:#7ee787;">Dim</span> c <span style="color:#7ee787;">As</span> Range
+    <span style="color:#7ee787;">Dim</span> startRow <span style="color:#7ee787;">As Long</span>
+    <span style="color:#7ee787;">Dim</span> currentJour <span style="color:#7ee787;">As String</span>
+    <span style="color:#7ee787;">Dim</span> nextJour <span style="color:#7ee787;">As String</span>
+    <span style="color:#7ee787;">Dim</span> qlNum <span style="color:#7ee787;">As String</span>
+
+    <span style="color:#7ee787;">For Each</span> ws <span style="color:#7ee787;">In</span> ThisWorkbook.Worksheets
+
+        <span style="color:#8b949e;">' Cherche colonne "Jour de distri"</span>
+        colJour = 0
+        <span style="color:#7ee787;">For Each</span> c <span style="color:#7ee787;">In</span> ws.Rows(19).Cells
+            <span style="color:#7ee787;">If</span> InStr(LCase(c.Value), <span style="color:#a5d6ff;">"jour"</span>) &gt; 0 <span style="color:#7ee787;">Then</span>
+                colJour = c.Column
+                <span style="color:#7ee787;">Exit For</span>
+            <span style="color:#7ee787;">End If</span>
+        <span style="color:#7ee787;">Next</span> c
+
+        <span style="color:#7ee787;">If</span> colJour = 0 <span style="color:#7ee787;">Then GoTo</span> SuivantSheet
+
+        lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
+
+        <span style="color:#8b949e;">' ---- Récupère le numéro après PDV ----</span>
+        <span style="color:#7ee787;">If</span> InStr(UCase(ws.Name), <span style="color:#a5d6ff;">"PDV_"</span>) &gt; 0 <span style="color:#7ee787;">Then</span>
+            qlNum = Mid(ws.Name, InStr(UCase(ws.Name), <span style="color:#a5d6ff;">"PDV_"</span>) + 4)
+        <span style="color:#7ee787;">Else</span>
+            qlNum = ws.Name
+        <span style="color:#7ee787;">End If</span>
+
+        <span style="color:#8b949e;">' ---- Cellule fusionnée ligne 2 de A à K ----</span>
+        ws.Range(<span style="color:#a5d6ff;">"A2:K2"</span>).UnMerge
+        <span style="color:#7ee787;">With</span> ws.Range(<span style="color:#a5d6ff;">"A2:K2"</span>)
+            .Merge
+            .HorizontalAlignment = xlCenter
+            .VerticalAlignment = xlCenter
+            .Interior.Color = RGB(128, 128, 128)
+            .Value = <span style="color:#a5d6ff;">"QL"</span> &amp; qlNum
+            .Font.Bold = <span style="color:#79c0ff;">True</span>
+            .Font.Color = RGB(0, 0, 0)
+            .Borders.LineStyle = xlContinuous
+            .Borders.Weight = xlThin
+            .Borders.Color = RGB(0, 0, 0)
+        <span style="color:#7ee787;">End With</span>
+
+        <span style="color:#8b949e;">' ---- Masquer lignes 3 à 18 ----</span>
+        ws.Rows(<span style="color:#a5d6ff;">"3:18"</span>).Hidden = <span style="color:#79c0ff;">True</span>
+        <span style="color:#8b949e;">' ---- Masquer colonnes D, E, H ----</span>
+        ws.Columns(<span style="color:#a5d6ff;">"D"</span>).Hidden = <span style="color:#79c0ff;">True</span>
+        ws.Columns(<span style="color:#a5d6ff;">"E"</span>).Hidden = <span style="color:#79c0ff;">True</span>
+        ws.Columns(<span style="color:#a5d6ff;">"H"</span>).Hidden = <span style="color:#79c0ff;">True</span>
+
+        <span style="color:#8b949e;">' ---- Colorisation lignes + extension jusqu'à colonne K ----</span>
+        <span style="color:#7ee787;">For</span> i = 20 <span style="color:#7ee787;">To</span> lastRow
+            jourVal = LCase(Trim(ws.Cells(i, colJour).Value))
+            <span style="color:#7ee787;">Select Case</span> jourVal
+                <span style="color:#7ee787;">Case</span> <span style="color:#a5d6ff;">"lundi"</span>    : couleur = RGB(235, 241, 222)
+                <span style="color:#7ee787;">Case</span> <span style="color:#a5d6ff;">"mardi"</span>    : couleur = RGB(197, 217, 241)
+                <span style="color:#7ee787;">Case</span> <span style="color:#a5d6ff;">"mercredi"</span> : couleur = RGB(253, 233, 217)
+                <span style="color:#7ee787;">Case</span> <span style="color:#a5d6ff;">"jeudi"</span>    : couleur = RGB(217, 217, 217)
+                <span style="color:#7ee787;">Case Else</span>          : couleur = xlNone
+            <span style="color:#7ee787;">End Select</span>
+            ws.Range(ws.Cells(i, 1), ws.Cells(i, 11)).Interior.Color = couleur
+        <span style="color:#7ee787;">Next</span> i
+
+        <span style="color:#8b949e;">' ---- Bordures (ligne 19 à lastRow, colonnes A à K) ----</span>
+        <span style="color:#7ee787;">With</span> ws.Range(ws.Cells(19, 1), ws.Cells(lastRow, 11)).Borders
+            .LineStyle = xlContinuous
+            .Weight = xlThin
+            .Color = RGB(0, 0, 0)
+        <span style="color:#7ee787;">End With</span>
+
+        <span style="color:#8b949e;">' ---- Fusion cellules "Jour de distri" ----</span>
+        ws.Columns(colJour).UnMerge
+        startRow = 20
+        currentJour = Trim(ws.Cells(20, colJour).Value)
+
+        <span style="color:#7ee787;">For</span> i = 21 <span style="color:#7ee787;">To</span> lastRow + 1
+            nextJour = Trim(ws.Cells(i, colJour).Value)
+            <span style="color:#7ee787;">If</span> nextJour &lt;&gt; currentJour <span style="color:#7ee787;">Or</span> i = lastRow + 1 <span style="color:#7ee787;">Then</span>
+                <span style="color:#7ee787;">If</span> i - startRow &gt;= 2 <span style="color:#7ee787;">And</span> currentJour &lt;&gt; <span style="color:#a5d6ff;">""</span> <span style="color:#7ee787;">Then</span>
+                    <span style="color:#7ee787;">With</span> ws.Range(ws.Cells(startRow, colJour), ws.Cells(i - 1, colJour))
+                        .Merge
+                        .HorizontalAlignment = xlCenter
+                        .VerticalAlignment = xlCenter
+                    <span style="color:#7ee787;">End With</span>
+                <span style="color:#7ee787;">End If</span>
+                startRow = i
+                currentJour = nextJour
+            <span style="color:#7ee787;">End If</span>
+        <span style="color:#7ee787;">Next</span> i
+
+SuivantSheet:
+    <span style="color:#7ee787;">Next</span> ws
+
+    Application.DisplayAlerts = <span style="color:#79c0ff;">True</span>
+
+<span style="color:#7ee787;">End Sub</span></code></pre>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -377,6 +497,22 @@
 </style>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
+function toggleVBACode(btn) {
+  const block = btn.nextElementSibling;
+  const arrow = btn.querySelector('.vba-arrow');
+  const txt = btn.querySelector('.vba-btn-txt');
+  const isOpen = block.style.display !== 'none';
+  block.style.display = isOpen ? 'none' : 'block';
+  arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(90deg)';
+  txt.textContent = isOpen ? 'Voir le code VBA complet' : 'Masquer le code';
+}
+function copyVBACode(btn) {
+  const code = document.getElementById('vba-code-content').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = '✓ Copié !';
+    setTimeout(() => { btn.textContent = '📋 Copier'; }, 2000);
+  });
+}
 function openStageLB(src,cap){document.getElementById('stage-lb-img').src=src;document.getElementById('stage-lb-cap').textContent=cap||'';document.getElementById('stage-lb').classList.add('open');}
 function closeStageLB(){document.getElementById('stage-lb').classList.remove('open');}
 document.getElementById('stage-lb').addEventListener('click',function(e){if(e.target===this)closeStageLB();});
