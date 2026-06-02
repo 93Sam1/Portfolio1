@@ -41,7 +41,7 @@
     </div>
       <div class="sae-section"><h2>Cadre du projet & Objectifs</h2><p style='color:var(--text-2);'>L'objectif est d'analyser l'assortiment de boissons dans <strong style='color:var(--text);'>trois magasins Carrefour situés autour de Bordeaux en Gironde</strong> : Carrefour Bègles, Carrefour Lormont et Carrefour Mérignac. La problématique centrale est la suivante : <em>Est-ce que les différences dans les données des produits révèlent des stratégies commerciales différentes chez Carrefour ?</em></p></div>
       <div class="sae-section"><h2>Étapes de réalisation</h2>
-        <div class="step-block"><h3>Collecte des données par scraping</h3><p style="color:var(--text-2);">Extraction automatisée des catalogues produits sur les sites Carrefour des trois magasins via scraping Python. Reporting intermédiaire sur Excel pour valider les données collectées.</p></div>
+        <div class="step-block"><h3>Collecte des données par scraping</h3><p style="color:var(--text-2);">Extraction automatisée des catalogues produits directement depuis les sites Carrefour des trois magasins avec Python et BeautifulSoup. Le scraping récupère pour chaque produit : le nom, le prix, la catégorie et le magasin d'appartenance. Le principal défi a été de gérer les structures de pages différentes selon les magasins et les changements dynamiques du DOM. Les données collectées ont ensuite été consolidées dans un fichier Excel pour validation avant analyse.</p></div>
         <div class="step-block"><h3>Nettoyage & structuration</h3><p style="color:var(--text-2);">Nettoyage intensif des fichiers scrapés : gestion des doublons, normalisation des formats de prix, traitement des valeurs manquantes. Sur 7 643 produits combinés, chaque magasin a été traité séparément pour préserver la cohérence des analyses.</p></div>
         <div class="step-block"><h3>Analyse statistique comparative</h3><p style="color:var(--text-2);">Calcul des indicateurs clés par magasin : moyenne, médiane et écart-type des prix. Les résultats montrent des profils très distincts — Mérignac (prix médian 11,49 €) se distingue nettement de Lormont (44,81 €) et Bègles (44,65 €), qui affichent des gammes similaires mais plus larges.</p></div>
         <div class="step-block"><h3>Dashboard décisionnel Power BI</h3><p style="color:var(--text-2);">Création d'un tableau de bord interactif sur Power BI permettant de visualiser la distribution des prix, les écarts entre magasins et la structure de l'assortiment. Filtres par magasin et catégorie de produit.</p></div>
@@ -85,7 +85,7 @@
         <tr>
           <td><strong style="font-family:var(--font-mono);font-size:0.7rem;">AC22.01</strong><br><span style="color:var(--text-2);font-size:0.76rem;">Appréhender les différents types de données et leurs caractéristiques</span></td>
           <td class="center"><span class="eval-dot ev-A">A</span></td>
-          <td style="font-size:0.77rem;color:var(--text-2);">Analyse des distributions de prix (asymétrie, bimodalité) et choix raisonné de la médiane plutôt que la moyenne pour caractériser les stratégies tarifaires.</td>
+          <td style="font-size:0.77rem;color:var(--text-2);">Comparaison des prix entre magasins via moyenne, médiane et écart-type. Choix de la médiane plutôt que la moyenne pour mieux représenter les prix habituels, car quelques produits très chers faussent la moyenne.</td>
         </tr>
       </tbody></table></div>
       
